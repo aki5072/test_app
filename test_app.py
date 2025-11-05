@@ -120,7 +120,7 @@ def scrape_product_data(url):
         options.add_argument("--window-size=1920,1080")
         options.add_argument("--disable-blink-features=AutomationControlled")
         options.add_argument("--lang=ja")
-        options.binary_location = "/Volumes/SSD-STICK/アプリケーション/Google Chrome.app/Contents/MacOS/Google Chrome"
+
 
         # メモリ使用量の最適化
         options.add_argument("--disable-extensions")
@@ -357,6 +357,8 @@ def parse_input_text(input_text):
             lines = [l.strip() for l in item.split('\n') if l.strip()]
 
             for line in lines:
+                if '【' in line or '〈' in line:
+                    continue
                 url_matches = list(re.finditer(r'https?://[^\s]+', line))
                 if url_matches:
                     text_before_first_url = line[0:url_matches[0].start()].strip()
@@ -2019,7 +2021,7 @@ if st.button("生成"):
                         col_name_label, col_name_text, col_name_button = st.columns([2, 4, 1])
                         unique_name_key = f"product_name_input_{flat_idx}"
                         col_name_label.write(f"{label} の商品名:")
-                        col_name_text.text_input("", product_name, key=unique_name_key)
+                        col_name_text.text_input("商品名", product_name, key=unique_name_key, label_visibility="collapsed")
                         clipboard_name_script = f"""\n                        <script>\n                            function copyName_{flat_idx}() {{\n                                var text = "{product_name}";\n                                navigator.clipboard.writeText(text).then(function() {{\n                                    alert('📋 商品名をコピーしました！');\n                                }}, function(err) {{\n                                    console.error('コピーに失敗しました', err);\n                                }});\n                            }}\n                        </script>\n                        <button onclick="copyName_{flat_idx}()">📋 コピー</button>\n                        """
                         with col_name_button:
                             st.components.v1.html(clipboard_name_script, height=40)
@@ -2037,7 +2039,7 @@ if st.button("生成"):
                         col_img_label, col_img_text, col_img_button = st.columns([2, 4, 1])
                         unique_img_key = f"img_url_input_{flat_idx}"
                         col_img_label.write(f"{label} の画像URL:")
-                        col_img_text.text_input("", scraped_img_url, key=unique_img_key)
+                        col_img_text.text_input("画像URL", scraped_img_url, key=unique_img_key, label_visibility="collapsed")
                         clipboard_img_script = f"""\n                        <script>\n                            function copyImgToClipboard_{flat_idx}() {{\n                                var text = "{scraped_img_url}";\n                                navigator.clipboard.writeText(text).then(function() {{\n                                    alert('📋 画像URLをコピーしました！');\n                                }}, function(err) {{\n                                    console.error('コピーに失敗しました', err);\n                                }});\n                            }}\n                        </script>\n                        <button onclick="copyImgToClipboard_{flat_idx}()">📋 コピー</button>\n                        """
                         with col_img_button:
                             st.components.v1.html(clipboard_img_script, height=40)
@@ -2046,7 +2048,7 @@ if st.button("生成"):
                         col_price_label, col_price_text, col_price_button = st.columns([2, 4, 1])
                         unique_price_key = f"price_input_{flat_idx}"
                         col_price_label.write(f"{label} の価格:")
-                        col_price_text.text_input("", price, key=unique_price_key)
+                        col_price_text.text_input("価格", price, key=unique_price_key, label_visibility="collapsed")
                         clipboard_price_script = f"""\n                        <script>\n                            function copyPriceToClipboard_{flat_idx}() {{\n                                var text = "{price}";\n                                navigator.clipboard.writeText(text).then(function() {{\n                                    alert('📋 価格をコピーしました！');\n                                }}, function(err) {{\n                                    console.error('コピーに失敗しました', err);\n                                }});\n                            }}\n                        </script>\n                        <button onclick="copyPriceToClipboard_{flat_idx}()">📋 コピー</button>\n                        """
                         with col_price_button:
                             st.components.v1.html(clipboard_price_script, height=40)
@@ -2068,7 +2070,7 @@ if st.button("生成"):
                         col_b_name_label, col_b_name_text, col_b_name_button = st.columns([2, 4, 1])
                         col_b_name_label.write("バナー名:")
                         banner_name = banner.get('text', '')
-                        col_b_name_text.text_input("", banner_name, key=f"banner_name_{i}_{banner.get('link_url', '')}")
+                        col_b_name_text.text_input("バナー名", banner_name, key=f"banner_name_{i}_{banner.get('link_url', '')}", label_visibility="collapsed")
                         clipboard_banner_name_script = f'''
                         <script>
                             function copyBannerName_{i}() {{
@@ -2084,7 +2086,7 @@ if st.button("生成"):
                         col_b_img_label, col_b_img_text, col_b_img_button = st.columns([2, 4, 1])
                         col_b_img_label.write("画像URL:")
                         banner_img_url = banner.get('image_url', '')
-                        col_b_img_text.text_input("", banner_img_url, key=f"banner_image_url_{i}_{banner.get('link_url', '')}")
+                        col_b_img_text.text_input("バナー画像URL", banner_img_url, key=f"banner_image_url_{i}_{banner.get('link_url', '')}", label_visibility="collapsed")
                         clipboard_banner_img_script = f'''
                         <script>
                             function copyBannerImg_{i}() {{
@@ -2100,7 +2102,7 @@ if st.button("生成"):
                         col_b_link_label, col_b_link_text, col_b_link_button = st.columns([2, 4, 1])
                         col_b_link_label.write("リンクURL:")
                         banner_link_url = banner.get('link_url', '')
-                        col_b_link_text.text_input("", banner_link_url, key=f"banner_link_url_{i}_{banner.get('link_url', '')}")
+                        col_b_link_text.text_input("バナーリンクURL", banner_link_url, key=f"banner_link_url_{i}_{banner.get('link_url', '')}", label_visibility="collapsed")
                         clipboard_banner_link_script = f'''
                         <script>
                             function copyBannerLink_{i}() {{
