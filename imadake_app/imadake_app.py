@@ -626,23 +626,20 @@ len(processed_text)
     # 生成されたプロンプト
     st.subheader("生成されたプロンプト")
 
-    # プロンプトコピー機能
-    js_base_prompt = base_prompt.replace('`', '\`').replace('\\', '\\\\').replace('\n', '\\n')
-    prompt_copy_html = f"""
+    # プロンプト表示とコピー機能
+    prompt_html = f"""
+    <textarea id=\"prompt-textarea\" readonly style=\"width: 100%; height: 300px; border: 1px solid #ddd; padding: 5px; font-family: monospace; font-size: 12px;\">{base_prompt}</textarea>
+    <button onclick=\"copyPrompt()\" style=\"margin-top: 10px;\">プロンプトをコピー</button>
     <script>
         function copyPrompt() {{
-            var text = `{js_base_prompt}`;
-            navigator.clipboard.writeText(text).then(function() {{
-                alert('プロンプトをコピーしました！');
-            }}, function(err) {{
-                console.error('コピーに失敗しました', err);
-                alert('コピーに失敗しました。');
-            }});
+            var textarea = document.getElementById('prompt-textarea');
+            textarea.select();
+            document.execCommand('copy');
+            alert('プロンプトをコピーしました！');
         }}
     </script>
-    <button onclick="copyPrompt()">プロンプトをコピー</button>
     """
-    st.components.v1.html(prompt_copy_html, height=280)
+    st.components.v1.html(prompt_html, height=380)
 
     # ページURLの出力とコピー用ボタン
     st.subheader("生成されたページURL")
