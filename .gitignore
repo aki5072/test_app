@@ -1,1 +1,39 @@
 .env
+
+# macOS
+.DS_Store
+
+# Python
+.venv/
+venv/
+__pycache__/
+*.pyc
+
+# VSCode
+.vscode/
+
+# Archives
+*.zip
+
+# Backups
+*のコピー*.py
+*.bak
+imadake_app_バックアップ.py
+note_scraperのコピー.py
+test_app_old.py
+
+# Screenshots
+スクリーンショット*.png
+
+# Logs
+ログ/
+*.log
+
+# Others
+chromedriver_manual/
+gemini-cli_history/
+VSCODEプロファイル.code-profile
+技わざ*
+import streamlit as st.py
+run_streamlit.sh
+メルマガFB.md

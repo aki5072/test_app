@@ -1,0 +1,528 @@
+source /Users/akiakko0526/my_python_project/venv/bin/activate
+akiakko0526@Mac-mini my_python_project % source /Users/akiakko0526/my_python_project/
+venv/bin/activate
+(venv) akiakko0526@Mac-mini my_python_project % streamlit run '/Users/akiakko0526/my_python_project/test_app.py'
+
+  You can now view your Streamlit app in your browser.
+
+  Local URL: http://localhost:8501
+  Network URL: http://192.168.1.13:8501
+
+  For better performance, install the Watchdog module:
+
+  $ xcode-select --install
+  $ pip install watchdog
+
+/Users/akiakko0526/my_python_project/venv/lib/python3.9/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+2025-11-05 14:17:05.694 `label` got an empty value. This is discouraged for accessibility reasons and may be disallowed in the future by raising an exception. Please provide a non-empty label and hide it with label_visibility if needed.
+Stack (most recent call last):
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/threading.py", line 930, in _bootstrap
+    self._bootstrap_inner()
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/threading.py", line 973, in _bootstrap_inner
+    self.run()
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/threading.py", line 910, in run
+    self._target(*self._args, **self._kwargs)
+  File "/Users/akiakko0526/my_python_project/venv/lib/python3.9/site-packages/streamlit/runtime/scriptrunner/script_runner.py", line 378, in _run_script_thread
+    self._run_script(request.rerun_data)
+  File "/Users/akiakko0526/my_python_project/venv/lib/python3.9/site-packages/streamlit/runtime/scriptrunner/script_runner.py", line 685, in _run_script
+    ) = exec_func_with_error_handling(code_to_exec, ctx)
+  File "/Users/akiakko0526/my_python_project/venv/lib/python3.9/site-packages/streamlit/runtime/scriptrunner/exec_code.py", line 128, in exec_func_with_error_handling
+    result = func()
+  File "/Users/akiakko0526/my_python_project/venv/lib/python3.9/site-packages/streamlit/runtime/scriptrunner/script_runner.py", line 669, in code_to_exec
+    exec(code, module.__dict__)  # noqa: S102
+  File "/Users/akiakko0526/my_python_project/test_app.py", line 2022, in <module>
+    col_name_text.text_input("", product_name, key=unique_name_key)
+  File "/Users/akiakko0526/my_python_project/venv/lib/python3.9/site-packages/streamlit/runtime/metrics_util.py", line 443, in wrapped_func
+    result = non_optional_func(*args, **kwargs)
+  File "/Users/akiakko0526/my_python_project/venv/lib/python3.9/site-packages/streamlit/elements/widgets/text_widgets.py", line 276, in text_input
+    return self._text_input(
+  File "/Users/akiakko0526/my_python_project/venv/lib/python3.9/site-packages/streamlit/elements/widgets/text_widgets.py", line 323, in _text_input
+    maybe_raise_label_warnings(label, label_visibility)
+  File "/Users/akiakko0526/my_python_project/venv/lib/python3.9/site-packages/streamlit/elements/lib/policies.py", line 184, in maybe_raise_label_warnings
+    _LOGGER.warning(
+2025-11-05 14:17:05.696 `label` got an empty value. This is discouraged for accessibility reasons and may be disallowed in the future by raising an exception. Please provide a non-empty label and hide it with label_visibility if needed.
+Stack (most recent call last):
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/threading.py", line 930, in _bootstrap
+    self._bootstrap_inner()
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/threading.py", line 973, in _bootstrap_inner
+    self.run()
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/threading.py", line 910, in run
+    self._target(*self._args, **self._kwargs)
+  File "/Users/akiakko0526/my_python_project/venv/lib/python3.9/site-packages/streamlit/runtime/scriptrunner/script_runner.py", line 378, in _run_script_thread
+    self._run_script(request.rerun_data)
+  File "/Users/akiakko0526/my_python_project/venv/lib/python3.9/site-packages/streamlit/runtime/scriptrunner/script_runner.py", line 685, in _run_script
+    ) = exec_func_with_error_handling(code_to_exec, ctx)
+  File "/Users/akiakko0526/my_python_project/venv/lib/python3.9/site-packages/streamlit/runtime/scriptrunner/exec_code.py", line 128, in exec_func_with_error_handling
+    result = func()
+  File "/Users/akiakko0526/my_python_project/venv/lib/python3.9/site-packages/streamlit/runtime/scriptrunner/script_runner.py", line 669, in code_to_exec
+    exec(code, module.__dict__)  # noqa: S102
+  File "/Users/akiakko0526/my_python_project/test_app.py", line 2040, in <module>
+    col_img_text.text_input("", scraped_img_url, key=unique_img_key)
+  File "/Users/akiakko0526/my_python_project/venv/lib/python3.9/site-packages/streamlit/runtime/metrics_util.py", line 443, in wrapped_func
+    result = non_optional_func(*args, **kwargs)
+  File "/Users/akiakko0526/my_python_project/venv/lib/python3.9/site-packages/streamlit/elements/widgets/text_widgets.py", line 276, in text_input
+    return self._text_input(
+  File "/Users/akiakko0526/my_python_project/venv/lib/python3.9/site-packages/streamlit/elements/widgets/text_widgets.py", line 323, in _text_input
+    maybe_raise_label_warnings(label, label_visibility)
+  File "/Users/akiakko0526/my_python_project/venv/lib/python3.9/site-packages/streamlit/elements/lib/policies.py", line 184, in maybe_raise_label_warnings
+    _LOGGER.warning(
+2025-11-05 14:17:05.697 `label` got an empty value. This is discouraged for accessibility reasons and may be disallowed in the future by raising an exception. Please provide a non-empty label and hide it with label_visibility if needed.
+Stack (most recent call last):
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/threading.py", line 930, in _bootstrap
+    self._bootstrap_inner()
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/threading.py", line 973, in _bootstrap_inner
+    self.run()
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/threading.py", line 910, in run
+    self._target(*self._args, **self._kwargs)
+  File "/Users/akiakko0526/my_python_project/venv/lib/python3.9/site-packages/streamlit/runtime/scriptrunner/script_runner.py", line 378, in _run_script_thread
+    self._run_script(request.rerun_data)
+  File "/Users/akiakko0526/my_python_project/venv/lib/python3.9/site-packages/streamlit/runtime/scriptrunner/script_runner.py", line 685, in _run_script
+    ) = exec_func_with_error_handling(code_to_exec, ctx)
+  File "/Users/akiakko0526/my_python_project/venv/lib/python3.9/site-packages/streamlit/runtime/scriptrunner/exec_code.py", line 128, in exec_func_with_error_handling
+    result = func()
+  File "/Users/akiakko0526/my_python_project/venv/lib/python3.9/site-packages/streamlit/runtime/scriptrunner/script_runner.py", line 669, in code_to_exec
+    exec(code, module.__dict__)  # noqa: S102
+  File "/Users/akiakko0526/my_python_project/test_app.py", line 2049, in <module>
+    col_price_text.text_input("", price, key=unique_price_key)
+  File "/Users/akiakko0526/my_python_project/venv/lib/python3.9/site-packages/streamlit/runtime/metrics_util.py", line 443, in wrapped_func
+    result = non_optional_func(*args, **kwargs)
+  File "/Users/akiakko0526/my_python_project/venv/lib/python3.9/site-packages/streamlit/elements/widgets/text_widgets.py", line 276, in text_input
+    return self._text_input(
+  File "/Users/akiakko0526/my_python_project/venv/lib/python3.9/site-packages/streamlit/elements/widgets/text_widgets.py", line 323, in _text_input
+    maybe_raise_label_warnings(label, label_visibility)
+  File "/Users/akiakko0526/my_python_project/venv/lib/python3.9/site-packages/streamlit/elements/lib/policies.py", line 184, in maybe_raise_label_warnings
+    _LOGGER.warning(
+2025-11-05 14:17:05.697 `label` got an empty value. This is discouraged for accessibility reasons and may be disallowed in the future by raising an exception. Please provide a non-empty label and hide it with label_visibility if needed.
+Stack (most recent call last):
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/threading.py", line 930, in _bootstrap
+    self._bootstrap_inner()
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/threading.py", line 973, in _bootstrap_inner
+    self.run()
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/threading.py", line 910, in run
+    self._target(*self._args, **self._kwargs)
+  File "/Users/akiakko0526/my_python_project/venv/lib/python3.9/site-packages/streamlit/runtime/scriptrunner/script_runner.py", line 378, in _run_script_thread
+    self._run_script(request.rerun_data)
+  File "/Users/akiakko0526/my_python_project/venv/lib/python3.9/site-packages/streamlit/runtime/scriptrunner/script_runner.py", line 685, in _run_script
+    ) = exec_func_with_error_handling(code_to_exec, ctx)
+  File "/Users/akiakko0526/my_python_project/venv/lib/python3.9/site-packages/streamlit/runtime/scriptrunner/exec_code.py", line 128, in exec_func_with_error_handling
+    result = func()
+  File "/Users/akiakko0526/my_python_project/venv/lib/python3.9/site-packages/streamlit/runtime/scriptrunner/script_runner.py", line 669, in code_to_exec
+    exec(code, module.__dict__)  # noqa: S102
+  File "/Users/akiakko0526/my_python_project/test_app.py", line 2022, in <module>
+    col_name_text.text_input("", product_name, key=unique_name_key)
+  File "/Users/akiakko0526/my_python_project/venv/lib/python3.9/site-packages/streamlit/runtime/metrics_util.py", line 443, in wrapped_func
+    result = non_optional_func(*args, **kwargs)
+  File "/Users/akiakko0526/my_python_project/venv/lib/python3.9/site-packages/streamlit/elements/widgets/text_widgets.py", line 276, in text_input
+    return self._text_input(
+  File "/Users/akiakko0526/my_python_project/venv/lib/python3.9/site-packages/streamlit/elements/widgets/text_widgets.py", line 323, in _text_input
+    maybe_raise_label_warnings(label, label_visibility)
+  File "/Users/akiakko0526/my_python_project/venv/lib/python3.9/site-packages/streamlit/elements/lib/policies.py", line 184, in maybe_raise_label_warnings
+    _LOGGER.warning(
+2025-11-05 14:17:05.699 `label` got an empty value. This is discouraged for accessibility reasons and may be disallowed in the future by raising an exception. Please provide a non-empty label and hide it with label_visibility if needed.
+Stack (most recent call last):
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/threading.py", line 930, in _bootstrap
+    self._bootstrap_inner()
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/threading.py", line 973, in _bootstrap_inner
+    self.run()
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/threading.py", line 910, in run
+    self._target(*self._args, **self._kwargs)
+  File "/Users/akiakko0526/my_python_project/venv/lib/python3.9/site-packages/streamlit/runtime/scriptrunner/script_runner.py", line 378, in _run_script_thread
+    self._run_script(request.rerun_data)
+  File "/Users/akiakko0526/my_python_project/venv/lib/python3.9/site-packages/streamlit/runtime/scriptrunner/script_runner.py", line 685, in _run_script
+    ) = exec_func_with_error_handling(code_to_exec, ctx)
+  File "/Users/akiakko0526/my_python_project/venv/lib/python3.9/site-packages/streamlit/runtime/scriptrunner/exec_code.py", line 128, in exec_func_with_error_handling
+    result = func()
+  File "/Users/akiakko0526/my_python_project/venv/lib/python3.9/site-packages/streamlit/runtime/scriptrunner/script_runner.py", line 669, in code_to_exec
+    exec(code, module.__dict__)  # noqa: S102
+  File "/Users/akiakko0526/my_python_project/test_app.py", line 2040, in <module>
+    col_img_text.text_input("", scraped_img_url, key=unique_img_key)
+  File "/Users/akiakko0526/my_python_project/venv/lib/python3.9/site-packages/streamlit/runtime/metrics_util.py", line 443, in wrapped_func
+    result = non_optional_func(*args, **kwargs)
+  File "/Users/akiakko0526/my_python_project/venv/lib/python3.9/site-packages/streamlit/elements/widgets/text_widgets.py", line 276, in text_input
+    return self._text_input(
+  File "/Users/akiakko0526/my_python_project/venv/lib/python3.9/site-packages/streamlit/elements/widgets/text_widgets.py", line 323, in _text_input
+    maybe_raise_label_warnings(label, label_visibility)
+  File "/Users/akiakko0526/my_python_project/venv/lib/python3.9/site-packages/streamlit/elements/lib/policies.py", line 184, in maybe_raise_label_warnings
+    _LOGGER.warning(
+2025-11-05 14:17:05.700 `label` got an empty value. This is discouraged for accessibility reasons and may be disallowed in the future by raising an exception. Please provide a non-empty label and hide it with label_visibility if needed.
+Stack (most recent call last):
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/threading.py", line 930, in _bootstrap
+    self._bootstrap_inner()
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/threading.py", line 973, in _bootstrap_inner
+    self.run()
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/threading.py", line 910, in run
+    self._target(*self._args, **self._kwargs)
+  File "/Users/akiakko0526/my_python_project/venv/lib/python3.9/site-packages/streamlit/runtime/scriptrunner/script_runner.py", line 378, in _run_script_thread
+    self._run_script(request.rerun_data)
+  File "/Users/akiakko0526/my_python_project/venv/lib/python3.9/site-packages/streamlit/runtime/scriptrunner/script_runner.py", line 685, in _run_script
+    ) = exec_func_with_error_handling(code_to_exec, ctx)
+  File "/Users/akiakko0526/my_python_project/venv/lib/python3.9/site-packages/streamlit/runtime/scriptrunner/exec_code.py", line 128, in exec_func_with_error_handling
+    result = func()
+  File "/Users/akiakko0526/my_python_project/venv/lib/python3.9/site-packages/streamlit/runtime/scriptrunner/script_runner.py", line 669, in code_to_exec
+    exec(code, module.__dict__)  # noqa: S102
+  File "/Users/akiakko0526/my_python_project/test_app.py", line 2049, in <module>
+    col_price_text.text_input("", price, key=unique_price_key)
+  File "/Users/akiakko0526/my_python_project/venv/lib/python3.9/site-packages/streamlit/runtime/metrics_util.py", line 443, in wrapped_func
+    result = non_optional_func(*args, **kwargs)
+  File "/Users/akiakko0526/my_python_project/venv/lib/python3.9/site-packages/streamlit/elements/widgets/text_widgets.py", line 276, in text_input
+    return self._text_input(
+  File "/Users/akiakko0526/my_python_project/venv/lib/python3.9/site-packages/streamlit/elements/widgets/text_widgets.py", line 323, in _text_input
+    maybe_raise_label_warnings(label, label_visibility)
+  File "/Users/akiakko0526/my_python_project/venv/lib/python3.9/site-packages/streamlit/elements/lib/policies.py", line 184, in maybe_raise_label_warnings
+    _LOGGER.warning(
+2025-11-05 14:17:05.704 `label` got an empty value. This is discouraged for accessibility reasons and may be disallowed in the future by raising an exception. Please provide a non-empty label and hide it with label_visibility if needed.
+Stack (most recent call last):
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/threading.py", line 930, in _bootstrap
+    self._bootstrap_inner()
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/threading.py", line 973, in _bootstrap_inner
+    self.run()
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/threading.py", line 910, in run
+    self._target(*self._args, **self._kwargs)
+  File "/Users/akiakko0526/my_python_project/venv/lib/python3.9/site-packages/streamlit/runtime/scriptrunner/script_runner.py", line 378, in _run_script_thread
+    self._run_script(request.rerun_data)
+  File "/Users/akiakko0526/my_python_project/venv/lib/python3.9/site-packages/streamlit/runtime/scriptrunner/script_runner.py", line 685, in _run_script
+    ) = exec_func_with_error_handling(code_to_exec, ctx)
+  File "/Users/akiakko0526/my_python_project/venv/lib/python3.9/site-packages/streamlit/runtime/scriptrunner/exec_code.py", line 128, in exec_func_with_error_handling
+    result = func()
+  File "/Users/akiakko0526/my_python_project/venv/lib/python3.9/site-packages/streamlit/runtime/scriptrunner/script_runner.py", line 669, in code_to_exec
+    exec(code, module.__dict__)  # noqa: S102
+  File "/Users/akiakko0526/my_python_project/test_app.py", line 2022, in <module>
+    col_name_text.text_input("", product_name, key=unique_name_key)
+  File "/Users/akiakko0526/my_python_project/venv/lib/python3.9/site-packages/streamlit/runtime/metrics_util.py", line 443, in wrapped_func
+    result = non_optional_func(*args, **kwargs)
+  File "/Users/akiakko0526/my_python_project/venv/lib/python3.9/site-packages/streamlit/elements/widgets/text_widgets.py", line 276, in text_input
+    return self._text_input(
+  File "/Users/akiakko0526/my_python_project/venv/lib/python3.9/site-packages/streamlit/elements/widgets/text_widgets.py", line 323, in _text_input
+    maybe_raise_label_warnings(label, label_visibility)
+  File "/Users/akiakko0526/my_python_project/venv/lib/python3.9/site-packages/streamlit/elements/lib/policies.py", line 184, in maybe_raise_label_warnings
+    _LOGGER.warning(
+2025-11-05 14:17:05.707 `label` got an empty value. This is discouraged for accessibility reasons and may be disallowed in the future by raising an exception. Please provide a non-empty label and hide it with label_visibility if needed.
+Stack (most recent call last):
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/threading.py", line 930, in _bootstrap
+    self._bootstrap_inner()
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/threading.py", line 973, in _bootstrap_inner
+    self.run()
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/threading.py", line 910, in run
+    self._target(*self._args, **self._kwargs)
+  File "/Users/akiakko0526/my_python_project/venv/lib/python3.9/site-packages/streamlit/runtime/scriptrunner/script_runner.py", line 378, in _run_script_thread
+    self._run_script(request.rerun_data)
+  File "/Users/akiakko0526/my_python_project/venv/lib/python3.9/site-packages/streamlit/runtime/scriptrunner/script_runner.py", line 685, in _run_script
+    ) = exec_func_with_error_handling(code_to_exec, ctx)
+  File "/Users/akiakko0526/my_python_project/venv/lib/python3.9/site-packages/streamlit/runtime/scriptrunner/exec_code.py", line 128, in exec_func_with_error_handling
+    result = func()
+  File "/Users/akiakko0526/my_python_project/venv/lib/python3.9/site-packages/streamlit/runtime/scriptrunner/script_runner.py", line 669, in code_to_exec
+    exec(code, module.__dict__)  # noqa: S102
+  File "/Users/akiakko0526/my_python_project/test_app.py", line 2040, in <module>
+    col_img_text.text_input("", scraped_img_url, key=unique_img_key)
+  File "/Users/akiakko0526/my_python_project/venv/lib/python3.9/site-packages/streamlit/runtime/metrics_util.py", line 443, in wrapped_func
+    result = non_optional_func(*args, **kwargs)
+  File "/Users/akiakko0526/my_python_project/venv/lib/python3.9/site-packages/streamlit/elements/widgets/text_widgets.py", line 276, in text_input
+    return self._text_input(
+  File "/Users/akiakko0526/my_python_project/venv/lib/python3.9/site-packages/streamlit/elements/widgets/text_widgets.py", line 323, in _text_input
+    maybe_raise_label_warnings(label, label_visibility)
+  File "/Users/akiakko0526/my_python_project/venv/lib/python3.9/site-packages/streamlit/elements/lib/policies.py", line 184, in maybe_raise_label_warnings
+    _LOGGER.warning(
+2025-11-05 14:17:05.709 `label` got an empty value. This is discouraged for accessibility reasons and may be disallowed in the future by raising an exception. Please provide a non-empty label and hide it with label_visibility if needed.
+Stack (most recent call last):
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/threading.py", line 930, in _bootstrap
+    self._bootstrap_inner()
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/threading.py", line 973, in _bootstrap_inner
+    self.run()
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/threading.py", line 910, in run
+    self._target(*self._args, **self._kwargs)
+  File "/Users/akiakko0526/my_python_project/venv/lib/python3.9/site-packages/streamlit/runtime/scriptrunner/script_runner.py", line 378, in _run_script_thread
+    self._run_script(request.rerun_data)
+  File "/Users/akiakko0526/my_python_project/venv/lib/python3.9/site-packages/streamlit/runtime/scriptrunner/script_runner.py", line 685, in _run_script
+    ) = exec_func_with_error_handling(code_to_exec, ctx)
+  File "/Users/akiakko0526/my_python_project/venv/lib/python3.9/site-packages/streamlit/runtime/scriptrunner/exec_code.py", line 128, in exec_func_with_error_handling
+    result = func()
+  File "/Users/akiakko0526/my_python_project/venv/lib/python3.9/site-packages/streamlit/runtime/scriptrunner/script_runner.py", line 669, in code_to_exec
+    exec(code, module.__dict__)  # noqa: S102
+  File "/Users/akiakko0526/my_python_project/test_app.py", line 2049, in <module>
+    col_price_text.text_input("", price, key=unique_price_key)
+  File "/Users/akiakko0526/my_python_project/venv/lib/python3.9/site-packages/streamlit/runtime/metrics_util.py", line 443, in wrapped_func
+    result = non_optional_func(*args, **kwargs)
+  File "/Users/akiakko0526/my_python_project/venv/lib/python3.9/site-packages/streamlit/elements/widgets/text_widgets.py", line 276, in text_input
+    return self._text_input(
+  File "/Users/akiakko0526/my_python_project/venv/lib/python3.9/site-packages/streamlit/elements/widgets/text_widgets.py", line 323, in _text_input
+    maybe_raise_label_warnings(label, label_visibility)
+  File "/Users/akiakko0526/my_python_project/venv/lib/python3.9/site-packages/streamlit/elements/lib/policies.py", line 184, in maybe_raise_label_warnings
+    _LOGGER.warning(
+2025-11-05 14:17:05.710 `label` got an empty value. This is discouraged for accessibility reasons and may be disallowed in the future by raising an exception. Please provide a non-empty label and hide it with label_visibility if needed.
+Stack (most recent call last):
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/threading.py", line 930, in _bootstrap
+    self._bootstrap_inner()
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/threading.py", line 973, in _bootstrap_inner
+    self.run()
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/threading.py", line 910, in run
+    self._target(*self._args, **self._kwargs)
+  File "/Users/akiakko0526/my_python_project/venv/lib/python3.9/site-packages/streamlit/runtime/scriptrunner/script_runner.py", line 378, in _run_script_thread
+    self._run_script(request.rerun_data)
+  File "/Users/akiakko0526/my_python_project/venv/lib/python3.9/site-packages/streamlit/runtime/scriptrunner/script_runner.py", line 685, in _run_script
+    ) = exec_func_with_error_handling(code_to_exec, ctx)
+  File "/Users/akiakko0526/my_python_project/venv/lib/python3.9/site-packages/streamlit/runtime/scriptrunner/exec_code.py", line 128, in exec_func_with_error_handling
+    result = func()
+  File "/Users/akiakko0526/my_python_project/venv/lib/python3.9/site-packages/streamlit/runtime/scriptrunner/script_runner.py", line 669, in code_to_exec
+    exec(code, module.__dict__)  # noqa: S102
+  File "/Users/akiakko0526/my_python_project/test_app.py", line 2022, in <module>
+    col_name_text.text_input("", product_name, key=unique_name_key)
+  File "/Users/akiakko0526/my_python_project/venv/lib/python3.9/site-packages/streamlit/runtime/metrics_util.py", line 443, in wrapped_func
+    result = non_optional_func(*args, **kwargs)
+  File "/Users/akiakko0526/my_python_project/venv/lib/python3.9/site-packages/streamlit/elements/widgets/text_widgets.py", line 276, in text_input
+    return self._text_input(
+  File "/Users/akiakko0526/my_python_project/venv/lib/python3.9/site-packages/streamlit/elements/widgets/text_widgets.py", line 323, in _text_input
+    maybe_raise_label_warnings(label, label_visibility)
+  File "/Users/akiakko0526/my_python_project/venv/lib/python3.9/site-packages/streamlit/elements/lib/policies.py", line 184, in maybe_raise_label_warnings
+    _LOGGER.warning(
+2025-11-05 14:17:05.714 `label` got an empty value. This is discouraged for accessibility reasons and may be disallowed in the future by raising an exception. Please provide a non-empty label and hide it with label_visibility if needed.
+Stack (most recent call last):
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/threading.py", line 930, in _bootstrap
+    self._bootstrap_inner()
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/threading.py", line 973, in _bootstrap_inner
+    self.run()
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/threading.py", line 910, in run
+    self._target(*self._args, **self._kwargs)
+  File "/Users/akiakko0526/my_python_project/venv/lib/python3.9/site-packages/streamlit/runtime/scriptrunner/script_runner.py", line 378, in _run_script_thread
+    self._run_script(request.rerun_data)
+  File "/Users/akiakko0526/my_python_project/venv/lib/python3.9/site-packages/streamlit/runtime/scriptrunner/script_runner.py", line 685, in _run_script
+    ) = exec_func_with_error_handling(code_to_exec, ctx)
+  File "/Users/akiakko0526/my_python_project/venv/lib/python3.9/site-packages/streamlit/runtime/scriptrunner/exec_code.py", line 128, in exec_func_with_error_handling
+    result = func()
+  File "/Users/akiakko0526/my_python_project/venv/lib/python3.9/site-packages/streamlit/runtime/scriptrunner/script_runner.py", line 669, in code_to_exec
+    exec(code, module.__dict__)  # noqa: S102
+  File "/Users/akiakko0526/my_python_project/test_app.py", line 2040, in <module>
+    col_img_text.text_input("", scraped_img_url, key=unique_img_key)
+  File "/Users/akiakko0526/my_python_project/venv/lib/python3.9/site-packages/streamlit/runtime/metrics_util.py", line 443, in wrapped_func
+    result = non_optional_func(*args, **kwargs)
+  File "/Users/akiakko0526/my_python_project/venv/lib/python3.9/site-packages/streamlit/elements/widgets/text_widgets.py", line 276, in text_input
+    return self._text_input(
+  File "/Users/akiakko0526/my_python_project/venv/lib/python3.9/site-packages/streamlit/elements/widgets/text_widgets.py", line 323, in _text_input
+    maybe_raise_label_warnings(label, label_visibility)
+  File "/Users/akiakko0526/my_python_project/venv/lib/python3.9/site-packages/streamlit/elements/lib/policies.py", line 184, in maybe_raise_label_warnings
+    _LOGGER.warning(
+2025-11-05 14:17:05.720 `label` got an empty value. This is discouraged for accessibility reasons and may be disallowed in the future by raising an exception. Please provide a non-empty label and hide it with label_visibility if needed.
+Stack (most recent call last):
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/threading.py", line 930, in _bootstrap
+    self._bootstrap_inner()
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/threading.py", line 973, in _bootstrap_inner
+    self.run()
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/threading.py", line 910, in run
+    self._target(*self._args, **self._kwargs)
+  File "/Users/akiakko0526/my_python_project/venv/lib/python3.9/site-packages/streamlit/runtime/scriptrunner/script_runner.py", line 378, in _run_script_thread
+    self._run_script(request.rerun_data)
+  File "/Users/akiakko0526/my_python_project/venv/lib/python3.9/site-packages/streamlit/runtime/scriptrunner/script_runner.py", line 685, in _run_script
+    ) = exec_func_with_error_handling(code_to_exec, ctx)
+  File "/Users/akiakko0526/my_python_project/venv/lib/python3.9/site-packages/streamlit/runtime/scriptrunner/exec_code.py", line 128, in exec_func_with_error_handling
+    result = func()
+  File "/Users/akiakko0526/my_python_project/venv/lib/python3.9/site-packages/streamlit/runtime/scriptrunner/script_runner.py", line 669, in code_to_exec
+    exec(code, module.__dict__)  # noqa: S102
+  File "/Users/akiakko0526/my_python_project/test_app.py", line 2049, in <module>
+    col_price_text.text_input("", price, key=unique_price_key)
+  File "/Users/akiakko0526/my_python_project/venv/lib/python3.9/site-packages/streamlit/runtime/metrics_util.py", line 443, in wrapped_func
+    result = non_optional_func(*args, **kwargs)
+  File "/Users/akiakko0526/my_python_project/venv/lib/python3.9/site-packages/streamlit/elements/widgets/text_widgets.py", line 276, in text_input
+    return self._text_input(
+  File "/Users/akiakko0526/my_python_project/venv/lib/python3.9/site-packages/streamlit/elements/widgets/text_widgets.py", line 323, in _text_input
+    maybe_raise_label_warnings(label, label_visibility)
+  File "/Users/akiakko0526/my_python_project/venv/lib/python3.9/site-packages/streamlit/elements/lib/policies.py", line 184, in maybe_raise_label_warnings
+    _LOGGER.warning(
+2025-11-05 14:17:05.723 `label` got an empty value. This is discouraged for accessibility reasons and may be disallowed in the future by raising an exception. Please provide a non-empty label and hide it with label_visibility if needed.
+Stack (most recent call last):
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/threading.py", line 930, in _bootstrap
+    self._bootstrap_inner()
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/threading.py", line 973, in _bootstrap_inner
+    self.run()
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/threading.py", line 910, in run
+    self._target(*self._args, **self._kwargs)
+  File "/Users/akiakko0526/my_python_project/venv/lib/python3.9/site-packages/streamlit/runtime/scriptrunner/script_runner.py", line 378, in _run_script_thread
+    self._run_script(request.rerun_data)
+  File "/Users/akiakko0526/my_python_project/venv/lib/python3.9/site-packages/streamlit/runtime/scriptrunner/script_runner.py", line 685, in _run_script
+    ) = exec_func_with_error_handling(code_to_exec, ctx)
+  File "/Users/akiakko0526/my_python_project/venv/lib/python3.9/site-packages/streamlit/runtime/scriptrunner/exec_code.py", line 128, in exec_func_with_error_handling
+    result = func()
+  File "/Users/akiakko0526/my_python_project/venv/lib/python3.9/site-packages/streamlit/runtime/scriptrunner/script_runner.py", line 669, in code_to_exec
+    exec(code, module.__dict__)  # noqa: S102
+  File "/Users/akiakko0526/my_python_project/test_app.py", line 2022, in <module>
+    col_name_text.text_input("", product_name, key=unique_name_key)
+  File "/Users/akiakko0526/my_python_project/venv/lib/python3.9/site-packages/streamlit/runtime/metrics_util.py", line 443, in wrapped_func
+    result = non_optional_func(*args, **kwargs)
+  File "/Users/akiakko0526/my_python_project/venv/lib/python3.9/site-packages/streamlit/elements/widgets/text_widgets.py", line 276, in text_input
+    return self._text_input(
+  File "/Users/akiakko0526/my_python_project/venv/lib/python3.9/site-packages/streamlit/elements/widgets/text_widgets.py", line 323, in _text_input
+    maybe_raise_label_warnings(label, label_visibility)
+  File "/Users/akiakko0526/my_python_project/venv/lib/python3.9/site-packages/streamlit/elements/lib/policies.py", line 184, in maybe_raise_label_warnings
+    _LOGGER.warning(
+2025-11-05 14:17:05.726 `label` got an empty value. This is discouraged for accessibility reasons and may be disallowed in the future by raising an exception. Please provide a non-empty label and hide it with label_visibility if needed.
+Stack (most recent call last):
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/threading.py", line 930, in _bootstrap
+    self._bootstrap_inner()
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/threading.py", line 973, in _bootstrap_inner
+    self.run()
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/threading.py", line 910, in run
+    self._target(*self._args, **self._kwargs)
+  File "/Users/akiakko0526/my_python_project/venv/lib/python3.9/site-packages/streamlit/runtime/scriptrunner/script_runner.py", line 378, in _run_script_thread
+    self._run_script(request.rerun_data)
+  File "/Users/akiakko0526/my_python_project/venv/lib/python3.9/site-packages/streamlit/runtime/scriptrunner/script_runner.py", line 685, in _run_script
+    ) = exec_func_with_error_handling(code_to_exec, ctx)
+  File "/Users/akiakko0526/my_python_project/venv/lib/python3.9/site-packages/streamlit/runtime/scriptrunner/exec_code.py", line 128, in exec_func_with_error_handling
+    result = func()
+  File "/Users/akiakko0526/my_python_project/venv/lib/python3.9/site-packages/streamlit/runtime/scriptrunner/script_runner.py", line 669, in code_to_exec
+    exec(code, module.__dict__)  # noqa: S102
+  File "/Users/akiakko0526/my_python_project/test_app.py", line 2040, in <module>
+    col_img_text.text_input("", scraped_img_url, key=unique_img_key)
+  File "/Users/akiakko0526/my_python_project/venv/lib/python3.9/site-packages/streamlit/runtime/metrics_util.py", line 443, in wrapped_func
+    result = non_optional_func(*args, **kwargs)
+  File "/Users/akiakko0526/my_python_project/venv/lib/python3.9/site-packages/streamlit/elements/widgets/text_widgets.py", line 276, in text_input
+    return self._text_input(
+  File "/Users/akiakko0526/my_python_project/venv/lib/python3.9/site-packages/streamlit/elements/widgets/text_widgets.py", line 323, in _text_input
+    maybe_raise_label_warnings(label, label_visibility)
+  File "/Users/akiakko0526/my_python_project/venv/lib/python3.9/site-packages/streamlit/elements/lib/policies.py", line 184, in maybe_raise_label_warnings
+    _LOGGER.warning(
+2025-11-05 14:17:05.728 `label` got an empty value. This is discouraged for accessibility reasons and may be disallowed in the future by raising an exception. Please provide a non-empty label and hide it with label_visibility if needed.
+Stack (most recent call last):
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/threading.py", line 930, in _bootstrap
+    self._bootstrap_inner()
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/threading.py", line 973, in _bootstrap_inner
+    self.run()
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/threading.py", line 910, in run
+    self._target(*self._args, **self._kwargs)
+  File "/Users/akiakko0526/my_python_project/venv/lib/python3.9/site-packages/streamlit/runtime/scriptrunner/script_runner.py", line 378, in _run_script_thread
+    self._run_script(request.rerun_data)
+  File "/Users/akiakko0526/my_python_project/venv/lib/python3.9/site-packages/streamlit/runtime/scriptrunner/script_runner.py", line 685, in _run_script
+    ) = exec_func_with_error_handling(code_to_exec, ctx)
+  File "/Users/akiakko0526/my_python_project/venv/lib/python3.9/site-packages/streamlit/runtime/scriptrunner/exec_code.py", line 128, in exec_func_with_error_handling
+    result = func()
+  File "/Users/akiakko0526/my_python_project/venv/lib/python3.9/site-packages/streamlit/runtime/scriptrunner/script_runner.py", line 669, in code_to_exec
+    exec(code, module.__dict__)  # noqa: S102
+  File "/Users/akiakko0526/my_python_project/test_app.py", line 2049, in <module>
+    col_price_text.text_input("", price, key=unique_price_key)
+  File "/Users/akiakko0526/my_python_project/venv/lib/python3.9/site-packages/streamlit/runtime/metrics_util.py", line 443, in wrapped_func
+    result = non_optional_func(*args, **kwargs)
+  File "/Users/akiakko0526/my_python_project/venv/lib/python3.9/site-packages/streamlit/elements/widgets/text_widgets.py", line 276, in text_input
+    return self._text_input(
+  File "/Users/akiakko0526/my_python_project/venv/lib/python3.9/site-packages/streamlit/elements/widgets/text_widgets.py", line 323, in _text_input
+    maybe_raise_label_warnings(label, label_visibility)
+  File "/Users/akiakko0526/my_python_project/venv/lib/python3.9/site-packages/streamlit/elements/lib/policies.py", line 184, in maybe_raise_label_warnings
+    _LOGGER.warning(
+2025-11-05 14:17:05.729 `label` got an empty value. This is discouraged for accessibility reasons and may be disallowed in the future by raising an exception. Please provide a non-empty label and hide it with label_visibility if needed.
+Stack (most recent call last):
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/threading.py", line 930, in _bootstrap
+    self._bootstrap_inner()
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/threading.py", line 973, in _bootstrap_inner
+    self.run()
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/threading.py", line 910, in run
+    self._target(*self._args, **self._kwargs)
+  File "/Users/akiakko0526/my_python_project/venv/lib/python3.9/site-packages/streamlit/runtime/scriptrunner/script_runner.py", line 378, in _run_script_thread
+    self._run_script(request.rerun_data)
+  File "/Users/akiakko0526/my_python_project/venv/lib/python3.9/site-packages/streamlit/runtime/scriptrunner/script_runner.py", line 685, in _run_script
+    ) = exec_func_with_error_handling(code_to_exec, ctx)
+  File "/Users/akiakko0526/my_python_project/venv/lib/python3.9/site-packages/streamlit/runtime/scriptrunner/exec_code.py", line 128, in exec_func_with_error_handling
+    result = func()
+  File "/Users/akiakko0526/my_python_project/venv/lib/python3.9/site-packages/streamlit/runtime/scriptrunner/script_runner.py", line 669, in code_to_exec
+    exec(code, module.__dict__)  # noqa: S102
+  File "/Users/akiakko0526/my_python_project/test_app.py", line 2022, in <module>
+    col_name_text.text_input("", product_name, key=unique_name_key)
+  File "/Users/akiakko0526/my_python_project/venv/lib/python3.9/site-packages/streamlit/runtime/metrics_util.py", line 443, in wrapped_func
+    result = non_optional_func(*args, **kwargs)
+  File "/Users/akiakko0526/my_python_project/venv/lib/python3.9/site-packages/streamlit/elements/widgets/text_widgets.py", line 276, in text_input
+    return self._text_input(
+  File "/Users/akiakko0526/my_python_project/venv/lib/python3.9/site-packages/streamlit/elements/widgets/text_widgets.py", line 323, in _text_input
+    maybe_raise_label_warnings(label, label_visibility)
+  File "/Users/akiakko0526/my_python_project/venv/lib/python3.9/site-packages/streamlit/elements/lib/policies.py", line 184, in maybe_raise_label_warnings
+    _LOGGER.warning(
+2025-11-05 14:17:05.731 `label` got an empty value. This is discouraged for accessibility reasons and may be disallowed in the future by raising an exception. Please provide a non-empty label and hide it with label_visibility if needed.
+Stack (most recent call last):
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/threading.py", line 930, in _bootstrap
+    self._bootstrap_inner()
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/threading.py", line 973, in _bootstrap_inner
+    self.run()
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/threading.py", line 910, in run
+    self._target(*self._args, **self._kwargs)
+  File "/Users/akiakko0526/my_python_project/venv/lib/python3.9/site-packages/streamlit/runtime/scriptrunner/script_runner.py", line 378, in _run_script_thread
+    self._run_script(request.rerun_data)
+  File "/Users/akiakko0526/my_python_project/venv/lib/python3.9/site-packages/streamlit/runtime/scriptrunner/script_runner.py", line 685, in _run_script
+    ) = exec_func_with_error_handling(code_to_exec, ctx)
+  File "/Users/akiakko0526/my_python_project/venv/lib/python3.9/site-packages/streamlit/runtime/scriptrunner/exec_code.py", line 128, in exec_func_with_error_handling
+    result = func()
+  File "/Users/akiakko0526/my_python_project/venv/lib/python3.9/site-packages/streamlit/runtime/scriptrunner/script_runner.py", line 669, in code_to_exec
+    exec(code, module.__dict__)  # noqa: S102
+  File "/Users/akiakko0526/my_python_project/test_app.py", line 2040, in <module>
+    col_img_text.text_input("", scraped_img_url, key=unique_img_key)
+  File "/Users/akiakko0526/my_python_project/venv/lib/python3.9/site-packages/streamlit/runtime/metrics_util.py", line 443, in wrapped_func
+    result = non_optional_func(*args, **kwargs)
+  File "/Users/akiakko0526/my_python_project/venv/lib/python3.9/site-packages/streamlit/elements/widgets/text_widgets.py", line 276, in text_input
+    return self._text_input(
+  File "/Users/akiakko0526/my_python_project/venv/lib/python3.9/site-packages/streamlit/elements/widgets/text_widgets.py", line 323, in _text_input
+    maybe_raise_label_warnings(label, label_visibility)
+  File "/Users/akiakko0526/my_python_project/venv/lib/python3.9/site-packages/streamlit/elements/lib/policies.py", line 184, in maybe_raise_label_warnings
+    _LOGGER.warning(
+2025-11-05 14:17:05.733 `label` got an empty value. This is discouraged for accessibility reasons and may be disallowed in the future by raising an exception. Please provide a non-empty label and hide it with label_visibility if needed.
+Stack (most recent call last):
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/threading.py", line 930, in _bootstrap
+    self._bootstrap_inner()
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/threading.py", line 973, in _bootstrap_inner
+    self.run()
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/threading.py", line 910, in run
+    self._target(*self._args, **self._kwargs)
+  File "/Users/akiakko0526/my_python_project/venv/lib/python3.9/site-packages/streamlit/runtime/scriptrunner/script_runner.py", line 378, in _run_script_thread
+    self._run_script(request.rerun_data)
+  File "/Users/akiakko0526/my_python_project/venv/lib/python3.9/site-packages/streamlit/runtime/scriptrunner/script_runner.py", line 685, in _run_script
+    ) = exec_func_with_error_handling(code_to_exec, ctx)
+  File "/Users/akiakko0526/my_python_project/venv/lib/python3.9/site-packages/streamlit/runtime/scriptrunner/exec_code.py", line 128, in exec_func_with_error_handling
+    result = func()
+  File "/Users/akiakko0526/my_python_project/venv/lib/python3.9/site-packages/streamlit/runtime/scriptrunner/script_runner.py", line 669, in code_to_exec
+    exec(code, module.__dict__)  # noqa: S102
+  File "/Users/akiakko0526/my_python_project/test_app.py", line 2049, in <module>
+    col_price_text.text_input("", price, key=unique_price_key)
+  File "/Users/akiakko0526/my_python_project/venv/lib/python3.9/site-packages/streamlit/runtime/metrics_util.py", line 443, in wrapped_func
+    result = non_optional_func(*args, **kwargs)
+  File "/Users/akiakko0526/my_python_project/venv/lib/python3.9/site-packages/streamlit/elements/widgets/text_widgets.py", line 276, in text_input
+    return self._text_input(
+  File "/Users/akiakko0526/my_python_project/venv/lib/python3.9/site-packages/streamlit/elements/widgets/text_widgets.py", line 323, in _text_input
+    maybe_raise_label_warnings(label, label_visibility)
+  File "/Users/akiakko0526/my_python_project/venv/lib/python3.9/site-packages/streamlit/elements/lib/policies.py", line 184, in maybe_raise_label_warnings
+    _LOGGER.warning(
+=== キャンペーンタイプ確認: WEBCAS ===
+WEBCAS判定: True
+=== HTMLファイル生成処理開始 ===
+テンプレートパス: /Users/akiakko0526/Library/Mobile Documents/com~apple~CloudDocs/47_CLUB_メルマガマニュアル/メルマガ原稿/WEBCAS_テンプレート_ver3.html
+テンプレート生成開始
+ビジュアルモード: False
+=== 商品データの構造確認 ===
+
+商品 1 のデータ:
+商品データキー: dict_keys(['product_name', 'product_names', 'urls', 'image_url', 'price', 'catchphrases', 'description'])
+価格:
+商品名: ['【エラー】商品名取得に失敗: Message: ']
+
+=== 価格処理の詳細 ===
+URLの数: 1
+複数商品の処理開始:
+単一価格を使用:
+
+商品 2 のデータ:
+商品データキー: dict_keys(['product_name', 'product_names', 'urls', 'image_url', 'price', 'catchphrases', 'description'])
+価格:
+商品名: ['【エラー】商品名取得に失敗: Message: ', '【エラー】商品名取得に失敗: Message: ']
+
+=== 価格処理の詳細 ===
+URLの数: 2
+複数商品の処理開始:
+単一価格を使用:
+
+商品 3 のデータ:
+商品データキー: dict_keys(['product_name', 'product_names', 'urls', 'image_url', 'price', 'catchphrases', 'description'])
+価格:
+商品名: ['【エラー】商品名取得に失敗: Message: ', '【エラー】商品名取得に失敗: Message: ']
+
+=== 価格処理の詳細 ===
+URLの数: 2
+複数商品の処理開始:
+単一価格を使用:
+
+商品 4 のデータ:
+商品データキー: dict_keys(['product_name', 'product_names', 'urls', 'image_url', 'price', 'catchphrases', 'description'])
+価格: 3,300
+商品名: ['【正月餅予約】15セット限定！この道49年、頑固な餅職人小林さんのつきたて「きび餅」〈500g×2P〉']
+HTMLファイル生成完了: /Users/akiakko0526/Library/Mobile Documents/com~apple~CloudDocs/47_CLUB_メルマガマニュアル/メルマガ原稿/20251106_WEBCAS.html

@@ -18,9 +18,7 @@ def sanitize_filename(title):
     """ファイル名として安全な文字列に変換する"""
     # 英数字、日本語（ひらがな、カタカナ、漢字）、アンダースコア、ハイフン以外の文字をすべてアンダースコアに置換
     cleaned_title = re.sub(r'[^a-zA-Z0-9_\-\u3040-\u309F\u30A0-\u30FF\u4E00-\u9FFF]+', "_", title)
-    # 連続するアンダースコアを1つにまとめる
     cleaned_title = re.sub(r'__+', "_", cleaned_title)
-    # 先頭と末尾のアンダースコアを除去
     cleaned_title = cleaned_title.strip("_")
     return cleaned_title
 
@@ -97,35 +95,58 @@ def save_as_markdown(note_key, note_info, all_notes_info, output_dir):
         
         replacements_after_md = []
 
-        for figure in soup.find_all("figure", attrs={"embedded-service": "note"}):
-            related_key = figure.get("data-identifier")
-            if not related_key or related_key == note_key: continue
+        for i, figure in enumerate(soup.find_all("figure")):
+            placeholder = f"<!-- EMBED_PLACEHOLDER_{i} -->"
+            service = figure.get("embedded-service")
+            final_markdown = ""
 
-            print(f"    -> 関連記事リンク発見: {related_key}。詳細を取得中...")
-            time.sleep(3)
-            related_detail = get_note_detail(related_key)
+            if service == "note":
+                related_key = figure.get("data-identifier")
+                if not related_key or related_key == note_key: continue
 
-            if related_detail:
-                original_related_title = all_notes_info.get(related_key, {}).get("title", related_detail.get("name", "無題"))
-                safe_related_title = sanitize_filename(original_related_title)
-                internal_link_target = f"{related_key}_{safe_related_title}"
-                external_url = related_detail.get("note_url", "")
-                related_eyecatch_url = related_detail.get("eyecatch", "")
+                print(f"    -> noteリンク発見: {related_key}。詳細を取得中...")
+                time.sleep(3)
+                related_detail = get_note_detail(related_key)
+                if related_detail:
+                    original_related_title = all_notes_info.get(related_key, {}).get("title", related_detail.get("name", "無題"))
+                    safe_related_title = sanitize_filename(original_related_title)
+                    internal_link_target = f"{related_key}_{safe_related_title}"
+                    external_url = related_detail.get("note_url", "")
+                    related_eyecatch_url = related_detail.get("eyecatch", "")
 
-                final_markdown_link = f"[[{internal_link_target}]][🌐]({external_url})"
-                if related_eyecatch_url:
-                    final_markdown_link += f"\n\n![thumbnail]({related_eyecatch_url})\n"
+                    final_markdown = f"[[{internal_link_target}]][🌐]({external_url})"
+                    if related_eyecatch_url:
+                        final_markdown += f"\n\n![thumbnail]({related_eyecatch_url})\n"
 
-                placeholder = f"<!-- RELATED_NOTE_PLACEHOLDER_{related_key} -->"
+            elif service == "twitter":
+                print(f"    -> Twitterポスト発見。HTMLを保持します。")
+                # figureタグの内側にある div.twitter-tweet を取得
+                tweet_div = figure.find("div", class_="twitter-tweet")
+                if tweet_div:
+                    final_markdown = str(tweet_div)
+
+            elif service == "youtube":
+                print(f"    -> YouTube動画発見。サムネイルとリンクに変換します。")
+                # style属性からサムネイルURLを抽出
+                thumb_div = figure.find("div", class_="ytp-cued-thumbnail-overlay-image")
+                if thumb_div and 'style' in thumb_div.attrs:
+                    style_attr = thumb_div['style']
+                    match = re.search(r'url\("(.*?)"\)', style_attr)
+                    if match:
+                        thumb_url = match.group(1)
+                        video_url = figure.get("data-src", "")
+                        final_markdown = f'<img src="{thumb_url}"><br>（**URL:** [{video_url}]({video_url})）'
+
+            if final_markdown:
                 figure.replace_with(placeholder)
-                replacements_after_md.append((placeholder, final_markdown_link))
+                replacements_after_md.append((placeholder, final_markdown))
 
         h = html2text.HTML2Text()
         h.body_width = 0
         body_md = h.handle(str(soup))
 
-        for placeholder, final_markdown_link in replacements_after_md:
-            body_md = body_md.replace(placeholder, final_markdown_link)
+        for placeholder, final_markdown in replacements_after_md:
+            body_md = body_md.replace(placeholder, final_markdown)
 
         md_content = f"# {title}\n\n**URL:** {note_detail.get('note_url', '')}\n\n"
         if eyecatch_url:
@@ -151,8 +172,6 @@ def save_as_markdown(note_key, note_info, all_notes_info, output_dir):
 
 def main():
     """メイン処理"""
-    ARTICLE_LIMIT = 0 # 0で全件取得
-
     os.makedirs(OUTPUT_DIR, exist_ok=True)
     print(f"記事の保存先: {os.path.abspath(OUTPUT_DIR)}")
 
@@ -162,14 +181,13 @@ def main():
         print("記事情報が取得できなかったため、処理を終了します。")
         return
 
-    note_keys = list(all_notes_info.keys())
-    if ARTICLE_LIMIT > 0:
-        print(f"\n★★★ お試しモード: 最新の{ARTICLE_LIMIT}件のみ取得します ★★★\n")
-        note_keys = note_keys[:ARTICLE_LIMIT]
+    # --- テスト対象のキーをここに指定 ---
+    note_keys_to_test = ["n3d8a5a1a332f"]
+    print(f"\n★★★ テストモード: {note_keys_to_test} のみ取得します ★★★\n")
 
-    total_notes = len(note_keys)
+    total_notes = len(note_keys_to_test)
     print(f"\n合計{total_notes}件の記事を処理します。")
-    for i, note_key in enumerate(note_keys):
+    for i, note_key in enumerate(note_keys_to_test):
         print(f"({i + 1}/{total_notes}) 記事を処理中: {note_key}")
         note_info = all_notes_info.get(note_key, {})
         save_as_markdown(note_key, note_info, all_notes_info, OUTPUT_DIR)
