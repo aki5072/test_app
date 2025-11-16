@@ -130,8 +130,10 @@ def scrape_product_data(url):
         # ページロード戦略の最適化
         options.page_load_strategy = 'eager'
 
+        # Chromeの実行ファイルパスを明示的に指定
+        options.binary_location = '/Volumes/SSD-STICK/アプリケーション/Google Chrome.app/Contents/MacOS/Google Chrome'
+
         # User-Agentを最新に更新
-        options.add_argument('user-agent=Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36')
 
         log_file_path = os.path.join(os.path.dirname(__file__), "chromedriver.log")
         service = Service(log_path=log_file_path)
@@ -478,6 +480,7 @@ len(processed_text)
 ✅ 条件1：件名の構成・フォーマット
 - 件名には、【】内に**日本語全角10文字以内で開封を促す一言**を入れてください。
 - その後、**1商品目の短いキャッチコピー＋「商品名」＋2商品目の短いキャッチコピー＋「商品名」**をつなげてください。
+- 商品と商品の間には、スペースや助詞・接続助詞の"と"、句読点などは一切入れず、**そのまま連結**してください。
 - 例：
   - 【今が旬】薪火が引き出す旨み「昔ながらの干し芋セット」寒の時期だけの極上の甘み「しっとり濃厚・できたて干し芋セット」
 - **開封を促す一言は1商品目の内容から最適なものを考えてください。**
@@ -602,7 +605,6 @@ len(processed_text)
 - 1行目：読者の感情を引きつけるキャッチコピー。
 - 2〜4行目：内容を補足し、情景・職人・味・背景などを簡潔に広げる。
 - 各行は例文（＜例１＞〜＜例３＞）と同様に、意味のまとまりを保ちながら自然な位置で改行する。
-- 全体を3〜4行で構成し、各行が読みやすい長さになるよう調整する。
 - [キャッチ] や [補足文] などのラベルは出力に含めず、自然な文章として出力してください。
 - 各行の冒頭に行番号や不要なスペースは入れない
 
@@ -717,14 +719,11 @@ len(processed_text)
 
 ---
 
-✅ 条件1：記号・改行・句読点・文章接続の使用
+✅ 条件1：記号・改行・句読点の使用
 - 「！」（感嘆符）は一切使用しない。
 - **改行は必ず<br>タグを使用して、商品ごとに「コードブロック形式」で出力してください。**
-- 句読点は自然な日本語の流れを重視し、文節が途中で途切れる不自然な改行は避けてください。
-- **助詞（は、の、を、が、に、で など）を効果的に使用し、文と文の自然な接続を重視してください。**
-- **体言止めは1案につき最大1箇所までとし、連続使用を避けてください。**
-- **読点のみで区切られた短文の連続を避け、完結した文章構成を心がけてください。**
-- 文全体が流れるように読める構成を心がけてください。
+- 句読点は自然な語のまとまりで使い、文節の途中で切らない。
+- 改行位置は「読みやすさ」「一息で読める長さ」「文としてのまとまり」を最優先にする。
 
 
 ✅ 条件2：語句の使用制限
@@ -777,9 +776,9 @@ len(processed_text)
 以下の段階的優先順位に従って判断する：
 
 【優先順位】
-1. **最優先：** 構成パターン（条件7）の5行構成と句読点配置
-2. **第二優先：** 自然な語り口と読者の心地よい読書体験
-3. **第三優先：** 各行11-18文字の基本範囲
+1. **最優先：** 各行14-18文字の基本範囲
+2. **第二優先：** 構成パターン（条件7）の5行構成と句読点配置
+3. **第三優先：** 自然な語り口と読者の心地よい読書体験
 4. **許容範囲：** 表現の質を保つため、1行あたり±6文字程度の超過を積極的に許容
 
 禁止事項： 違和感のある語尾調整や無理な言い換え
@@ -817,7 +816,7 @@ len(processed_text)
 
 ✅ 条件7：構成パターン・表現品質
 - **メッセージを1商品につき通常バージョンを2案、DESC法、新PASONAの法則、物語（ストーリーテリング）の手法で各1案、合計5案を作成する。**
-- **句読点のパターンは設けず、各手法の構成や文章の流れが最も自然になるように句読点を配置する。**
+- **句読点のパターンは定めないが、文章が自然に読めるよう、その内容に最も適した句読点の配置を心がける。**
 - メッセージは必ず4行＋最終行（計5行）で構成する。
 
 【運用ルール】
@@ -856,7 +855,7 @@ len(processed_text)
 }
 
 
-def generate_email_prompt(prompt_template, parsed_products, descriptions, catchphrases, strong_texts_list, additional_notes, campaign_type, prices, prompt_key):
+def generate_email_prompt(prompt_template, parsed_products, descriptions, catchphrases, strong_texts_list, additional_notes, campaign_type, prices, prompt_key, fixed_subject_part="", delivery_date=""):
     """
     プロンプトテンプレートに基づき、全商品の説明文・キャッチコピー・strongテキスト・価格情報を
     枝番付きで埋め込んでプロンプトを生成する。
@@ -868,7 +867,25 @@ def generate_email_prompt(prompt_template, parsed_products, descriptions, catchp
     campaign_type           : メルマガの種別
     prices                  : 各URLごとの価格のタプル（flattenされた順序）
     prompt_key              : 使用するプロンプトのキー文字列
+    fixed_subject_part      : 固定する件名の一部（任意）
+    delivery_date           : 配信日
     """
+
+    # ジェニーへの指示を追加
+    instruction_for_jenny = """【ジェニーへの指示】
+1. このプロンプトで文章を生成してください。（
+    ※ただし、生成した文章は**チャットに表示しないで**ください）。
+2. 完成した文章を、以下のルールに従ってMarkdownファイルとして保存してください。
+   - 記述方法: 文章の前後で**余分な余白**を入れないでください。
+   - 保存場所: /Users/akiakko0526/my_python_project/test_app/generated_texts/
+   - ファイル名: (配信日)_(プロンプTの種類).md
+     - 例: 251112_メルマガ件名.md
+3. 保存が完了したら、必ず「（ファイル名）を保存しました！」とだけ報告してください。
+
+---
+
+"""
+    prompt_template = instruction_for_jenny + prompt_template
 
     # ビジュアルバージョンの場合の文字数制限の修正
     if campaign_type in ["WEBCAS(ビジュアルver)", "Make Repeater_レコメンド(ビジュアルver)"] and prompt_key == "注文ボタン上のメッセージ":
@@ -884,6 +901,59 @@ def generate_email_prompt(prompt_template, parsed_products, descriptions, catchp
             "大幅に許容範囲を超える行（23文字以上。※商品1のみ1行を30文字以上を基準）"
         )
 
+    # ★件名固定化のロジック★
+    if prompt_key == "メルマガ件名_短いキャッチと「」の商品名2個" and fixed_subject_part:
+        is_full_pattern = "「" in fixed_subject_part and "」" in fixed_subject_part
+        exception_note = f"※今回の例外的措置：件名の冒頭は「{fixed_subject_part}」に固定します。"
+
+        if is_full_pattern:
+            # 1商品目まで固定
+            exception_note += "これに続けて、2商品目の短いキャッチコピー＋「商品名」をつなげてください。"
+            prompt_template = re.sub(
+                r'✅ 条件1：件名の構成・フォーマット.*?✅ 条件2',
+                f"✅ 条件1：件名の構成・フォーマット\n- 件名の冒頭は「{fixed_subject_part}」をそのまま使用してください。\n- その後、**2商品目の短いキャッチコピー＋「商品名」**をつなげてください。\n✅ 条件2",
+                prompt_template, flags=re.DOTALL
+            )
+            prompt_template = re.sub(
+                r'✅ 条件2：プリヘッダー（キャッチコピー）.*?✅ 条件3',
+                "✅ 条件2：プリヘッダー（キャッチコピー）\n- **1商品目のプリヘッダーは不要です。**\n✅ 条件3",
+                prompt_template, flags=re.DOTALL
+            )
+            prompt_template = re.sub(
+                r'1\. 件名案.*?を3案',
+                f'1. 件名案（「{fixed_subject_part}」＋2商品目のキャッチ＋「商品名」）を3案',
+                prompt_template
+            )
+            prompt_template = re.sub(
+                r'3\. プリヘッダー.*?を3案',
+                '3. プリヘッダー（1商品目のみ、日本語全角16文字以内）を3案\n   ※1商品目のプリヘッダーは不要です。',
+                prompt_template
+            )
+        else:
+            # 開封ワードのみ固定
+            exception_note += "これに続けて、1商品目と2商品目の「短いキャッチコピー＋商品名」をつなげてください。"
+            prompt_template = re.sub(
+                r'✅ 条件1：件名の構成・フォーマット.*?✅ 条件2',
+                f"✅ 条件1：件名の構成・フォーマット\n- 件名の冒頭は「{fixed_subject_part}」をそのまま使用してください。\n- その後、**1商品目の短いキャッチコピー＋「商品名」＋2商品目の短いキャッチコピー＋「商品名」**をつなげてください。\n✅ 条件2",
+                prompt_template, flags=re.DOTALL
+            )
+
+        # 共通の変更
+        prompt_template = prompt_template.replace(
+            '## 📤【出力指示】',
+            f'## 📤【出力指示】\n\n{exception_note}\n'
+        )
+        prompt_template = re.sub(
+            r'✅ 条件3：開封を促す一言のバリエーション.*?✅ 条件4',
+            "✅ 条件3：開封を促す一言のバリエーション\n- **件名冒頭が固定されているため、この項目は不要です。**\n✅ 条件4",
+            prompt_template, flags=re.DOTALL
+        )
+        prompt_template = re.sub(
+            r'2\. 開封ワード.*?を5案',
+            '2. 開封ワード（日本語全角10文字以内）を5案\n   ※件名冒頭が固定されているため、この項目は不要です。',
+            prompt_template
+        )
+
     # レコメンドメール・Make Repeater_HTMLの場合、改行タグの使用に関する追加指示
     if campaign_type in ["Make Repeater_レコメンド", "Make Repeater_レコメンド(ビジュアルver)", "Make Repeater_HTML"] and prompt_key in ["注文ボタン上のメッセージ", "メルマガファーストビュー説明文"]:
         prompt_template = prompt_template.replace(
@@ -893,7 +963,7 @@ def generate_email_prompt(prompt_template, parsed_products, descriptions, catchp
         prompt_template = prompt_template.replace("<br>", "")
 
     # ── ここから商品説明を組み立て ──
-    products_section = ""
+    products_section = "\n\n---\n\n## ✍️【商品情報】\n\n"
     flat_idx = 0
     for j, product in enumerate(parsed_products, start=1):
         for k, _ in enumerate(product['urls'], start=1):
@@ -951,6 +1021,10 @@ def generate_email_prompt(prompt_template, parsed_products, descriptions, catchp
                 prompt_template,
                 flags=re.DOTALL
             )
+
+    # 配信日を追加
+    if delivery_date:
+        prompt_template += f"\n\n配信日: {delivery_date}"
 
     return prompt_template
 
@@ -1144,7 +1218,7 @@ def generate_html_from_template(template_path, products_data, campaign_date, cam
 '''
             # 3枚目以降を1行に2枚横並びにする
             if len(banner_data) > 2:
-                banner_html += '<!-- バナーセクション（2列） -->\n<table style="width: 100%; border-collapse: collapse; margin-bottom: 20px;">\n'
+                banner_html += '<!-- バナーセクション（2列）-->\n<table style="width: 100%; border-collapse: collapse; margin-bottom: 20px;">\n'
                 remaining_banners = banner_data[2:]
                 for i in range(0, len(remaining_banners), 2):
                     banner_html += '<tr>\n'
@@ -1463,7 +1537,7 @@ def generate_visual_sections(products_data, is_visual):
                     </a>
                 </div>'''
                         # 単一URLの場合、ctカテゴリのみ「〜」を付与
-                        price_display = f"{price} 〜" if any(re.search(r'/shopbrand/ct\d+/', u) for u in product.get('urls', [])) else f"{price}"
+                        price_display = f"{price} 〜" if any(re.search(r'/shopbrand/ct\d+', u) for u in product.get('urls', [])) else f"{price}"
                     title = titles[idx] if idx < len(titles) else product.get('product_name', '')
                     cell = f'''
         <td style="width: 48%; vertical-align: top;">
@@ -1626,6 +1700,16 @@ def extract_difference(str1, str2):
         # それでも差分が見つからない場合は空文字を返す
         return ('', '')
 
+def remove_product_section(prompt_text):
+    """
+    プロンプトから商品情報セクションを削除する関数
+    '## ✍️【商品情報】' 以降の内容を削除
+    """
+    match = re.search(r'## ✍️【商品情報】', prompt_text)
+    if match:
+        return prompt_text[:match.start()].rstrip() + "\n\n"
+    return prompt_text
+
 def generate_normal_sections(products_data):
     """通常版の商品セクションを生成する関数"""
     new_sections = []
@@ -1765,6 +1849,7 @@ def generate_normal_sections(products_data):
         文章文章文章。<br>
         文章。<br><br>
         背中を押す文言。<br>
+
     </p>
     <table style="width: 100%; margin-top: 20px;">
         <tr>
@@ -1804,10 +1889,20 @@ if st.button('すべて選択 / 解除'):
     for prompt_key in PROMPTS.keys():
         st.session_state[f"checkbox_{prompt_key}"] = st.session_state.select_all_prompts
 
+fixed_subject_part = ""  # 初期化
 for prompt_key in PROMPTS.keys():
     # セッションステートを使ってチェックボックスの状態を制御
-    if st.checkbox(prompt_key, key=f"checkbox_{prompt_key}", value=st.session_state.get(f"checkbox_{prompt_key}", False)):
+    is_checked = st.checkbox(prompt_key, key=f"checkbox_{prompt_key}", value=st.session_state.get(f"checkbox_{prompt_key}", False))
+    if is_checked:
         selected_prompts.append(prompt_key)
+
+    # 「メルマガ件名」が選択された場合、任意入力欄を表示
+    if prompt_key == "メルマガ件名_短いキャッチと「」の商品名2個" and is_checked:
+        fixed_subject_part = st.text_input(
+            "件名の一部を固定化する場合に入力してください（任意）",
+            placeholder="例: 【本日限り】 or 【本日限り】産地直送「甘い蜜柑」",
+            key="fixed_subject_part"
+        )
 
 input_text = st.text_area("スプレッドシートからコピーしたデータを貼り付けてください", height=200)
 additional_notes = st.text_area("追加事項（必要に応じて記入してください）", height=68)
@@ -1974,28 +2069,50 @@ if st.button("生成"):
                     additional_notes,
                     campaign_type,
                     prices,
-                    prompt_key
+                    prompt_key,
+                    fixed_subject_part=(
+                        fixed_subject_part
+                        if prompt_key == "メルマガ件名_短いキャッチと「」の商品名2個"
+                        else ""
+                    ),
+                    delivery_date=formatted_date,
                 )
 
                 # プロンプト出力用のテキストエリアとコピーボタン
                 st.text_area(f"{prompt_key}のプロンプト", email_prompt, height=200, key=f"textarea_{prompt_key}")
 
-                # JavaScriptで使用する際にエスケープが必要な文字を適切に処理
-                escaped_prompt = (
-                    email_prompt
-                    .replace('\\', '\\\\')
-                    .replace('`', '\`')
-                    .replace('${', '\\${')
-                    .replace('\n', '\\n')
-                    .replace('\r', '\\r')
-                    .replace('\t', '\\t')
-                    .replace("'", "\\'")
-                )
+                # --- ここから差し替え: コピーボタン＋チェック（商品情報を含める/除く）をブラウザ側で処理 ---
+                full_prompt = email_prompt
+                no_product_prompt = remove_product_section(email_prompt)
 
-                # コピーボタンの実装
+                # JS に埋める用にエスケープ（バックティック内で使うため ` をエスケープ）
+                def js_escape(s: str) -> str:
+                    return s.replace('\\', '\\\\').replace('`', '\\`').replace('\r', '').replace('\n', '\\n').replace('${', '\\${').replace("'", "\\'")
+
+                full_js = js_escape(full_prompt)
+                no_js = js_escape(no_product_prompt)
+
                 safe_prompt_key = prompt_key.replace(" ", "_").replace("「", "").replace("」", "").replace("、", "_")
-                clipboard_script = f'''\n                    <script>\n                        function copyToClipboard_{safe_prompt_key}() {{\n                            var text = `{escaped_prompt}`;\n                            navigator.clipboard.writeText(text).then(function() {{\n                                alert('📋 {prompt_key}のプロンプトをコピーしました！');\n                            }}, function(err) {{\n                                console.error('コピーに失敗しました', err);\n                            }});\n                        }}\n                    </script>\n                    <button onclick="copyToClipboard_{safe_prompt_key}()">📋 クリップボードにコピー</button>\n                    '''
-                st.components.v1.html(clipboard_script, height=40)
+                html_snippet = f"""
+                <script>
+                function copyPrompt_{safe_prompt_key}() {{
+                    var chk = document.getElementById('include_products_{safe_prompt_key}');
+                    var text = chk && chk.checked ? `{full_js}` : `{no_js}`;
+                    navigator.clipboard.writeText(text).then(function() {{
+                        alert('📋 {prompt_key} のプロンプトをコピーしました！' + (chk && chk.checked ? '（商品情報を含む）' : '（商品情報を除く）'));
+                    }}, function(err) {{
+                        console.error('コピーに失敗しました', err);
+                    }});
+                }}
+                </script>
+                <label style="display:inline-flex;align-items:center;gap:8px;">
+                  <input type="checkbox" id="include_products_{safe_prompt_key}" checked>
+                  <span style="font-size:14px;">商品情報を含める</span>
+                </label>
+                <button onclick="copyPrompt_{safe_prompt_key}()" style="margin-left:12px;">📋 クリップボードにコピー</button>
+                """
+                st.components.v1.html(html_snippet, height=56)
+                # --- 差し替えここまで ---
 
                 # プロンプト間の区切り線を追加
                 if prompt_key != selected_prompts[-1]:  # 最後のプロンプト以外に区切り線を追加
